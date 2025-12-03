@@ -95,10 +95,15 @@
 
     <div class="form-actions">
       <button type="button" class="btn btn-secondary" (click)="onPrevious()" [disabled]="false">
-        <span>← Previous</span>
+        <span class="btn-icon">←</span>
+        <span class="btn-text">Previous</span>
+        <span class="btn-shine"></span>
       </button>
       <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
-        <span>Continue →</span>
+        <span class="btn-text">Continue</span>
+        <span class="btn-icon">→</span>
+        <span class="btn-shine"></span>
+        <span class="btn-ripple"></span>
       </button>
     </div>
   </form>
