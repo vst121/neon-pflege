@@ -1,0 +1,107 @@
+<div class="step-content">
+  <div class="step-header">
+    <h2 class="step-title">Living Conditions</h2>
+    <p class="step-description">Tell us about your current living situation</p>
+  </div>
+
+  <form class="step-form" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">What type of residence do you live in?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of residenceTypes; track option.value) {
+          <label class="option-card" [class.selected]="formData.residenceType === option.value">
+            <input 
+              type="radio" 
+              name="residenceType" 
+              [value]="option.value"
+              [(ngModel)]="formData.residenceType"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Who do you live with?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of livingSituations; track option.value) {
+          <label class="option-card" [class.selected]="formData.livingSituation === option.value">
+            <input 
+              type="radio" 
+              name="livingSituation" 
+              [value]="option.value"
+              [(ngModel)]="formData.livingSituation"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">How accessible is your home?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of accessibilityLevels; track option.value) {
+          <label class="option-card" [class.selected]="formData.homeAccessibility === option.value">
+            <input 
+              type="radio" 
+              name="homeAccessibility" 
+              [value]="option.value"
+              [(ngModel)]="formData.homeAccessibility"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Are there stairs in your home?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of stairsOptions; track option.value) {
+          <label class="option-card" [class.selected]="formData.stairs === option.value">
+            <input 
+              type="radio" 
+              name="stairs" 
+              [value]="option.value"
+              [(ngModel)]="formData.stairs"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onPrevious()" [disabled]="false">
+        <span>← Previous</span>
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
+        <span>Continue →</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+

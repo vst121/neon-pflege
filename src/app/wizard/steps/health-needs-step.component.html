@@ -1,0 +1,109 @@
+<div class="step-content">
+  <div class="step-header">
+    <h2 class="step-title">Health & Care Needs</h2>
+    <p class="step-description">Tell us about your health conditions and care requirements</p>
+  </div>
+
+  <form class="step-form" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Do you have any medical conditions? (Select all that apply)</span>
+      </label>
+      <div class="option-grid">
+        @for (option of medicalConditions; track option.value) {
+          <label class="option-card multi-select" 
+                 [class.selected]="isConditionSelected(option.value)"
+                 (click)="toggleCondition(option.value)">
+            <input 
+              type="checkbox" 
+              [checked]="isConditionSelected(option.value)"
+              (change)="toggleCondition(option.value)"
+              class="checkbox-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">How do you manage your medications?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of medicationOptions; track option.value) {
+          <label class="option-card" [class.selected]="formData.medicationManagement === option.value">
+            <input 
+              type="radio" 
+              name="medicationManagement" 
+              [value]="option.value"
+              [(ngModel)]="formData.medicationManagement"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Which personal care activities do you need assistance with? (Select all that apply)</span>
+      </label>
+      <div class="option-grid">
+        @for (option of personalCareNeeds; track option.value) {
+          <label class="option-card multi-select" 
+                 [class.selected]="isPersonalCareSelected(option.value)"
+                 (click)="togglePersonalCare(option.value)">
+            <input 
+              type="checkbox" 
+              [checked]="isPersonalCareSelected(option.value)"
+              (change)="togglePersonalCare(option.value)"
+              class="checkbox-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Do you need cognitive or memory support?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of cognitiveSupportOptions; track option.value) {
+          <label class="option-card" [class.selected]="formData.cognitiveSupport === option.value">
+            <input 
+              type="radio" 
+              name="cognitiveSupport" 
+              [value]="option.value"
+              [(ngModel)]="formData.cognitiveSupport"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onPrevious()">
+        <span>← Previous</span>
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
+        <span>Get Recommendations →</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+

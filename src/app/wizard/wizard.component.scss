@@ -1,0 +1,222 @@
+.wizard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wizard-header {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  text-align: center;
+  animation: fadeInDown 0.6s ease-out;
+
+  .header-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .wizard-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .wizard-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+}
+
+.wizard-progress {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-out;
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+      border-radius: 10px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+  }
+
+  .step-indicators {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .step-indicator {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+
+      &.active {
+        opacity: 1;
+        transform: scale(1.05);
+
+        .step-number {
+          background: var(--gradient-primary);
+          color: white;
+          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .step-label {
+          color: white;
+          font-weight: 600;
+        }
+      }
+
+      &.completed {
+        opacity: 1;
+
+        .step-number {
+          background: var(--gradient-secondary);
+          color: white;
+        }
+
+        .step-label {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .step-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
+
+.wizard-content {
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+  animation: fadeInUp 0.6s ease-out;
+
+  .step-container {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: var(--shadow-xl);
+    min-height: 500px;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .wizard-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .wizard-header {
+    .header-content {
+      padding: 1.5rem;
+    }
+
+    .wizard-title {
+      font-size: 2rem;
+    }
+
+    .wizard-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .wizard-progress {
+    .step-indicators {
+      .step-indicator {
+        .step-number {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+
+        .step-label {
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+
+  .wizard-content {
+    .step-container {
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+    }
+  }
+}
+
+

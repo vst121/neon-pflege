@@ -1,0 +1,47 @@
+<div class="wizard-container">
+  <div class="wizard-header">
+    <div class="header-content">
+      <h1 class="wizard-title">Care Solution Finder</h1>
+      <p class="wizard-subtitle">Answer a few questions to discover personalized care recommendations</p>
+    </div>
+  </div>
+
+  <div class="wizard-progress">
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="getStepProgress()"></div>
+    </div>
+    <div class="step-indicators">
+      @for (step of [1, 2, 3]; track step) {
+        <div class="step-indicator" [class.active]="currentStep === step" [class.completed]="currentStep > step">
+          <div class="step-number">{{ step }}</div>
+          <div class="step-label">{{ stepTitles[step - 1] }}</div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="wizard-content">
+    <div class="step-container">
+      @if (currentStep === 1) {
+        <app-living-conditions-step 
+          (stepComplete)="onStepComplete($event)"
+          (previous)="onPrevious()">
+        </app-living-conditions-step>
+      }
+      @if (currentStep === 2) {
+        <app-mobility-step 
+          (stepComplete)="onStepComplete($event)"
+          (previous)="onPrevious()">
+        </app-mobility-step>
+      }
+      @if (currentStep === 3) {
+        <app-health-needs-step 
+          (stepComplete)="onStepComplete($event)"
+          (previous)="onPrevious()">
+        </app-health-needs-step>
+      }
+    </div>
+  </div>
+</div>
+
+

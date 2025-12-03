@@ -1,0 +1,107 @@
+<div class="step-content">
+  <div class="step-header">
+    <h2 class="step-title">Mobility & Daily Activities</h2>
+    <p class="step-description">Help us understand your mobility and daily activity needs</p>
+  </div>
+
+  <form class="step-form" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">How would you describe your mobility level?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of mobilityLevels; track option.value) {
+          <label class="option-card" [class.selected]="formData.mobilityLevel === option.value">
+            <input 
+              type="radio" 
+              name="mobilityLevel" 
+              [value]="option.value"
+              [(ngModel)]="formData.mobilityLevel"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Do you use any walking aids?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of walkingAids; track option.value) {
+          <label class="option-card" [class.selected]="formData.walkingAid === option.value">
+            <input 
+              type="radio" 
+              name="walkingAid" 
+              [value]="option.value"
+              [(ngModel)]="formData.walkingAid"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">Which daily activities do you need help with? (Select all that apply)</span>
+      </label>
+      <div class="option-grid">
+        @for (option of dailyActivityOptions; track option.value) {
+          <label class="option-card multi-select" 
+                 [class.selected]="isActivitySelected(option.value)"
+                 (click)="toggleActivity(option.value)">
+            <input 
+              type="checkbox" 
+              [checked]="isActivitySelected(option.value)"
+              (change)="toggleActivity(option.value)"
+              class="checkbox-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">
+        <span class="label-text">How do you typically get around?</span>
+      </label>
+      <div class="option-grid">
+        @for (option of transportationOptions; track option.value) {
+          <label class="option-card" [class.selected]="formData.transportation === option.value">
+            <input 
+              type="radio" 
+              name="transportation" 
+              [value]="option.value"
+              [(ngModel)]="formData.transportation"
+              class="radio-input">
+            <div class="option-content">
+              <span class="option-icon">{{ option.icon }}</span>
+              <span class="option-label">{{ option.label }}</span>
+            </div>
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onPrevious()">
+        <span>← Previous</span>
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
+        <span>Continue →</span>
+      </button>
+    </div>
+  </form>
+</div>
+
