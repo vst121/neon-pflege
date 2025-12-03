@@ -176,36 +176,81 @@
   }
 }
 
-@media (max-width: 768px) {
+// Tablet styles
+@media (max-width: 1024px) {
   .wizard-container {
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .wizard-header {
     .header-content {
-      padding: 1.5rem;
+      padding: 1.75rem;
     }
 
     .wizard-title {
-      font-size: 2rem;
+      font-size: 2.25rem;
+    }
+  }
+
+  .wizard-content {
+    .step-container {
+      padding: 2.5rem 2rem;
+    }
+  }
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .wizard-container {
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+  }
+
+  .wizard-header {
+    margin-bottom: 1.5rem;
+
+    .header-content {
+      padding: 1.5rem 1rem;
+      border-radius: 16px;
+    }
+
+    .wizard-title {
+      font-size: 1.75rem;
+      line-height: 1.2;
     }
 
     .wizard-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
   }
 
   .wizard-progress {
+    margin-bottom: 1.5rem;
+
+    .progress-bar {
+      margin-bottom: 1.5rem;
+      height: 6px;
+    }
+
     .step-indicators {
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
       .step-indicator {
+        min-width: 0;
+        flex: 1 1 auto;
+
         .step-number {
-          width: 40px;
-          height: 40px;
-          font-size: 1rem;
+          width: 36px;
+          height: 36px;
+          font-size: 0.9rem;
         }
 
         .step-label {
-          font-size: 0.75rem;
+          font-size: 0.7rem;
+          line-height: 1.2;
+          word-break: break-word;
         }
       }
     }
@@ -213,8 +258,57 @@
 
   .wizard-content {
     .step-container {
-      padding: 2rem 1.5rem;
-      border-radius: 20px;
+      padding: 1.5rem 1rem;
+      border-radius: 16px;
+      min-height: auto;
+    }
+  }
+}
+
+// Small mobile styles
+@media (max-width: 480px) {
+  .wizard-container {
+    padding: 0.75rem 0.25rem;
+  }
+
+  .wizard-header {
+    margin-bottom: 1rem;
+
+    .header-content {
+      padding: 1.25rem 0.75rem;
+      border-radius: 12px;
+    }
+
+    .wizard-title {
+      font-size: 1.5rem;
+    }
+
+    .wizard-subtitle {
+      font-size: 0.875rem;
+    }
+  }
+
+  .wizard-progress {
+    .step-indicators {
+      .step-indicator {
+        .step-number {
+          width: 32px;
+          height: 32px;
+          font-size: 0.8rem;
+        }
+
+        .step-label {
+          font-size: 0.65rem;
+          display: none; // Hide labels on very small screens
+        }
+      }
+    }
+  }
+
+  .wizard-content {
+    .step-container {
+      padding: 1.25rem 0.75rem;
+      border-radius: 12px;
     }
   }
 }

@@ -44,10 +44,37 @@ button {
   border: none;
   outline: none;
   transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 input, select, textarea {
   font-family: inherit;
+  font-size: 16px; // Prevents zoom on iOS
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button, a, [role="button"] {
+    min-height: 44px; // Minimum touch target size
+    min-width: 44px;
+  }
+
+  input, select, textarea {
+    font-size: 16px; // Prevents zoom on iOS when focusing
+  }
+}
+
+// Prevent text size adjustment on iOS
+@media screen and (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 }
 
 
