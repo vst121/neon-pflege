@@ -6,106 +6,97 @@
 
   <form class="step-form" (ngSubmit)="onSubmit()">
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">Do you have any medical conditions? (Select all that apply)</span>
-      </label>
+      <h3 class="section-title">Do you have any medical conditions? (Select all that apply)</h3>
       <div class="option-grid">
         @for (option of medicalConditions; track option.value) {
-          <label class="option-card multi-select" 
-                 [class.selected]="isConditionSelected(option.value)"
-                 (click)="toggleCondition(option.value)">
-            <input 
-              type="checkbox" 
+          <mat-card 
+            class="option-card multi-select" 
+            [class.selected]="isConditionSelected(option.value)"
+            (click)="toggleCondition(option.value)"
+            matRipple>
+            <mat-checkbox 
               [checked]="isConditionSelected(option.value)"
               (change)="toggleCondition(option.value)"
               class="checkbox-input">
+            </mat-checkbox>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
       </div>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">How do you manage your medications?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">How do you manage your medications?</h3>
+      <mat-radio-group [(ngModel)]="formData.medicationManagement" name="medicationManagement" class="option-grid">
         @for (option of medicationOptions; track option.value) {
-          <label class="option-card" [class.selected]="formData.medicationManagement === option.value">
-            <input 
-              type="radio" 
-              name="medicationManagement" 
-              [value]="option.value"
-              [(ngModel)]="formData.medicationManagement"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.medicationManagement === option.value"
+            (click)="formData.medicationManagement = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">Which personal care activities do you need assistance with? (Select all that apply)</span>
-      </label>
+      <h3 class="section-title">Which personal care activities do you need assistance with? (Select all that apply)</h3>
       <div class="option-grid">
         @for (option of personalCareNeeds; track option.value) {
-          <label class="option-card multi-select" 
-                 [class.selected]="isPersonalCareSelected(option.value)"
-                 (click)="togglePersonalCare(option.value)">
-            <input 
-              type="checkbox" 
+          <mat-card 
+            class="option-card multi-select" 
+            [class.selected]="isPersonalCareSelected(option.value)"
+            (click)="togglePersonalCare(option.value)"
+            matRipple>
+            <mat-checkbox 
               [checked]="isPersonalCareSelected(option.value)"
               (change)="togglePersonalCare(option.value)"
               class="checkbox-input">
+            </mat-checkbox>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
       </div>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">Do you need cognitive or memory support?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">Do you need cognitive or memory support?</h3>
+      <mat-radio-group [(ngModel)]="formData.cognitiveSupport" name="cognitiveSupport" class="option-grid">
         @for (option of cognitiveSupportOptions; track option.value) {
-          <label class="option-card" [class.selected]="formData.cognitiveSupport === option.value">
-            <input 
-              type="radio" 
-              name="cognitiveSupport" 
-              [value]="option.value"
-              [(ngModel)]="formData.cognitiveSupport"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.cognitiveSupport === option.value"
+            (click)="formData.cognitiveSupport = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="onPrevious()">
-        <span class="btn-icon">←</span>
-        <span class="btn-text">Previous</span>
-        <span class="btn-shine"></span>
+      <button mat-raised-button type="button" color="basic" (click)="onPrevious()">
+        <mat-icon>arrow_back</mat-icon>
+        Previous
       </button>
-      <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
-        <span class="btn-text">Get Recommendations</span>
-        <span class="btn-icon">→</span>
-        <span class="btn-shine"></span>
-        <span class="btn-ripple"></span>
+      <button mat-raised-button type="submit" color="primary" [disabled]="!canProceed()">
+        Get Recommendations
+        <mat-icon>arrow_forward</mat-icon>
       </button>
     </div>
   </form>

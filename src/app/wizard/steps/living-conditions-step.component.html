@@ -6,104 +6,89 @@
 
   <form class="step-form" (ngSubmit)="onSubmit()">
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">What type of residence do you live in?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">What type of residence do you live in?</h3>
+      <mat-radio-group [(ngModel)]="formData.residenceType" name="residenceType" class="option-grid">
         @for (option of residenceTypes; track option.value) {
-          <label class="option-card" [class.selected]="formData.residenceType === option.value">
-            <input 
-              type="radio" 
-              name="residenceType" 
-              [value]="option.value"
-              [(ngModel)]="formData.residenceType"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.residenceType === option.value"
+            (click)="formData.residenceType = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">Who do you live with?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">Who do you live with?</h3>
+      <mat-radio-group [(ngModel)]="formData.livingSituation" name="livingSituation" class="option-grid">
         @for (option of livingSituations; track option.value) {
-          <label class="option-card" [class.selected]="formData.livingSituation === option.value">
-            <input 
-              type="radio" 
-              name="livingSituation" 
-              [value]="option.value"
-              [(ngModel)]="formData.livingSituation"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.livingSituation === option.value"
+            (click)="formData.livingSituation = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">How accessible is your home?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">How accessible is your home?</h3>
+      <mat-radio-group [(ngModel)]="formData.homeAccessibility" name="homeAccessibility" class="option-grid">
         @for (option of accessibilityLevels; track option.value) {
-          <label class="option-card" [class.selected]="formData.homeAccessibility === option.value">
-            <input 
-              type="radio" 
-              name="homeAccessibility" 
-              [value]="option.value"
-              [(ngModel)]="formData.homeAccessibility"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.homeAccessibility === option.value"
+            (click)="formData.homeAccessibility = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-section">
-      <label class="form-label">
-        <span class="label-text">Are there stairs in your home?</span>
-      </label>
-      <div class="option-grid">
+      <h3 class="section-title">Are there stairs in your home?</h3>
+      <mat-radio-group [(ngModel)]="formData.stairs" name="stairs" class="option-grid">
         @for (option of stairsOptions; track option.value) {
-          <label class="option-card" [class.selected]="formData.stairs === option.value">
-            <input 
-              type="radio" 
-              name="stairs" 
-              [value]="option.value"
-              [(ngModel)]="formData.stairs"
-              class="radio-input">
+          <mat-card 
+            class="option-card" 
+            [class.selected]="formData.stairs === option.value"
+            (click)="formData.stairs = option.value"
+            matRipple>
+            <mat-radio-button [value]="option.value" class="radio-input"></mat-radio-button>
             <div class="option-content">
               <span class="option-icon">{{ option.icon }}</span>
               <span class="option-label">{{ option.label }}</span>
             </div>
-          </label>
+          </mat-card>
         }
-      </div>
+      </mat-radio-group>
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="onPrevious()" [disabled]="false">
-        <span class="btn-icon">←</span>
-        <span class="btn-text">Previous</span>
-        <span class="btn-shine"></span>
+      <button mat-raised-button type="button" color="basic" (click)="onPrevious()">
+        <mat-icon>arrow_back</mat-icon>
+        Previous
       </button>
-      <button type="submit" class="btn btn-primary" [disabled]="!canProceed()">
-        <span class="btn-text">Continue</span>
-        <span class="btn-icon">→</span>
-        <span class="btn-shine"></span>
-        <span class="btn-ripple"></span>
+      <button mat-raised-button type="submit" color="primary" [disabled]="!canProceed()">
+        Continue
+        <mat-icon>arrow_forward</mat-icon>
       </button>
     </div>
   </form>

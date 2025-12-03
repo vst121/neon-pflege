@@ -1,11 +1,24 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-living-conditions-step',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatRadioModule,
+    MatIconModule,
+    MatRippleModule
+  ],
   templateUrl: './living-conditions-step.component.html',
   styleUrls: ['./living-conditions-step.component.scss']
 })

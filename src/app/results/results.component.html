@@ -1,10 +1,10 @@
 <div class="results-container">
   <div class="results-header">
-    <div class="header-content">
+    <mat-card class="header-content">
       <div class="success-icon">✨</div>
       <h1 class="results-title">Your Personalized Care Recommendations</h1>
       <p class="results-subtitle">Based on your responses, here are tailored solutions to support your independence and well-being</p>
-    </div>
+    </mat-card>
   </div>
 
   <div class="results-content">
@@ -17,29 +17,36 @@
           </div>
           <div class="recommendations-grid">
             @for (rec of groupedRecommendations[category]; track rec.id) {
-              <div class="recommendation-card" [class]="getPriorityClass(rec.priority)">
-                <div class="card-header">
-                  <span class="recommendation-icon">{{ rec.icon }}</span>
-                  <div class="priority-badge" [class]="getPriorityClass(rec.priority)">
-                    {{ getPriorityLabel(rec.priority) }} Priority
+              <mat-card class="recommendation-card" [class]="getPriorityClass(rec.priority)">
+                <mat-card-header>
+                  <div class="card-header">
+                    <span class="recommendation-icon">{{ rec.icon }}</span>
+                    <mat-chip [class]="getPriorityClass(rec.priority)">
+                      {{ getPriorityLabel(rec.priority) }} Priority
+                    </mat-chip>
                   </div>
-                </div>
-                <h3 class="recommendation-title">{{ rec.title }}</h3>
-                <p class="recommendation-description">{{ rec.description }}</p>
-              </div>
+                </mat-card-header>
+                <mat-card-content>
+                  <h3 class="recommendation-title">{{ rec.title }}</h3>
+                  <p class="recommendation-description">{{ rec.description }}</p>
+                </mat-card-content>
+              </mat-card>
             }
           </div>
         </div>
       }
     } @else {
-      <div class="no-results">
-        <p>No recommendations available at this time.</p>
-      </div>
+      <mat-card class="no-results">
+        <mat-card-content>
+          <p>No recommendations available at this time.</p>
+        </mat-card-content>
+      </mat-card>
     }
 
     <div class="results-actions">
-      <button class="btn btn-primary" (click)="startOver()">
-        <span>Start Over</span>
+      <button mat-raised-button color="primary" (click)="startOver()">
+        <mat-icon>refresh</mat-icon>
+        Start Over
       </button>
     </div>
   </div>

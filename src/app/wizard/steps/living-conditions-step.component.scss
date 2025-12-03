@@ -45,6 +45,10 @@
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1rem;
 
+      &.mat-radio-group {
+        display: grid;
+      }
+
       .option-card {
         position: relative;
         cursor: pointer;
@@ -93,8 +97,15 @@
 
         .radio-input {
           position: absolute;
-          opacity: 0;
-          pointer-events: none;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+
+        .checkbox-input {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          z-index: 3;
         }
 
         .option-content {
@@ -130,177 +141,24 @@
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
 
-    .btn {
+    button {
       flex: 1;
-      padding: 1.25rem 2.5rem;
-      border-radius: 16px;
+      min-height: 56px;
       font-size: 1.05rem;
       font-weight: 600;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      text-decoration: none;
-      min-height: 56px;
 
-      &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
-
-      .btn-text {
-        position: relative;
-        z-index: 2;
-        transition: transform 0.3s ease;
-      }
-
-      .btn-icon {
-        position: relative;
-        z-index: 2;
-        font-size: 1.2rem;
-        font-weight: 700;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-block;
-      }
-
-      .btn-shine {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: left 0.5s ease;
-        z-index: 1;
-      }
-
-      .btn-ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple 0.6s ease-out;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      &.btn-primary {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
-        background-size: 200% 200%;
-        color: white;
-        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4),
-                    0 4px 12px rgba(139, 92, 246, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        animation: gradientShift 3s ease infinite;
-
-        &:hover:not(:disabled) {
-          transform: translateY(-4px) scale(1.02);
-          box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5),
-                      0 8px 16px rgba(139, 92, 246, 0.4),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-          background-position: right center;
-
-          .btn-icon {
-            transform: translateX(4px);
-          }
-
-          .btn-text {
-            transform: translateX(-2px);
-          }
-
-          .btn-shine {
-            left: 100%;
-          }
-        }
-
-        &:active:not(:disabled) {
-          transform: translateY(-2px) scale(1);
-          box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4),
-                      0 4px 10px rgba(139, 92, 246, 0.3);
-        }
-
-        &:not(:disabled)::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.3);
-          transform: translate(-50%, -50%);
-          transition: width 0.6s ease, height 0.6s ease;
-        }
-
-        &:not(:disabled):active::before {
-          width: 300px;
-          height: 300px;
-        }
-      }
-
-      &.btn-secondary {
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        color: var(--text-primary);
-        border: 2px solid var(--border-color);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-        &:hover:not(:disabled) {
-          transform: translateY(-3px) scale(1.01);
-          border-color: var(--primary-color);
-          background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-          box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15),
-                      0 4px 10px rgba(0, 0, 0, 0.08),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-          color: var(--primary-color);
-
-          .btn-icon {
-            transform: translateX(-4px);
-          }
-
-          .btn-text {
-            transform: translateX(2px);
-          }
-
-          .btn-shine {
-            left: 100%;
-          }
-        }
-
-        &:active:not(:disabled) {
-          transform: translateY(-1px) scale(1);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
+      mat-icon {
+        margin: 0 0.5rem;
       }
     }
   }
 
-  @keyframes gradientShift {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: block;
   }
 }
 
